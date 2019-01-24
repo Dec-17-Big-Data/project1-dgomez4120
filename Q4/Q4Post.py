@@ -25,11 +25,11 @@ for line in lines:
     else:
         continue
 
-plt.plot(yearZS, valZS, label='ZS')
-plt.plot( yearNEZS, valNEZS, label='NEZS')
-plt.title("Q4")
+plt.plot(yearZS, valZS, label='ILO Estimate')
+plt.plot( yearNEZS, valNEZS, label='National Estimate')
+plt.title("Female Employment (USA) - Q3 - Gomez")
 plt.xlabel("Year")
-plt.ylabel("Percent (%)") 
+plt.ylabel("Labor Force Participation Rate (%)") 
 plt.legend(loc='upper right')
 plt.grid()
 plt.show()

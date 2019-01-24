@@ -3,6 +3,8 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import re
+import scipy
+from scipy import stats
 
 file = open('part-r-00000.txt')
 content = file.read()
@@ -37,7 +39,7 @@ for key in countryCount:
                     superKey = key+" "+str(year)
                     if superKey in superData:
                         if columns[1] == "SE.SCH.LIFE.FE":
-                            superData[superKey] =+ [value]
+                            superData[superKey] = [value] + superData[superKey]
                         else:
                             superData[superKey] += [value]
                     else:
@@ -55,5 +57,16 @@ for key in superData:
     x += [superData[key][0]]
     y += [superData[key][1]]
 
+slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(x, y)
+print(slope, intercept, r_value)
+
 plt.scatter(x,y)
+plt.title("Schooling v. Fertility Rate - Q5 - Gomez")
+plt.xlabel("Years Schooled [yr]")
+plt.ylabel("Fertility Rate [births/woman]")
+axes = plt.gca()
+x_vals = np.array(axes.get_xlim())
+y_vals = intercept + slope * x_vals
+plt.plot(x_vals, y_vals, '--')
+plt.grid()
 plt.show()

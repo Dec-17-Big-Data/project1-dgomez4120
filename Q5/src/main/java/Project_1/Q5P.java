@@ -1,7 +1,30 @@
-package Project_1.Q5;
+package Project_1;
 
+/*
+ * 
+ * Implementation for Problem five of Project one.
+ * This problem explores the correlation between the years
+ * education a woman achieves and the corresponding fertility rate.
+ * 
+ * The mapper class maps the country/code key to a year:value value
+ * where both are of Text class. The year:value Text value was meant 
+ * for post-processing in python.
+ * 
+ * The reducer class concatenates the values for a country/code into 
+ * a single Text value delimited by commas. It also only takes keys
+ * that have more than ten values to have meaningful trends. It further 
+ * reduces the mapped output by taking data where the minimum years of 
+ * schooling is less than 7 or where the maximum number of schooling is
+ * greater than 18. This was done to have a wide data set but to also 
+ * cut down on data from middle of the pack.
+ * 
+ * In post-processing, a python script was used to match data on country 
+ * and year for (x, y) pairs where x would be the number of years schooled
+ * and y is the fertility rate. 
+ * 
+ * 
+ */
 import java.io.IOException;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
